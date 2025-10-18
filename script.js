@@ -22,7 +22,7 @@ const projects = [
   {
     icon: 'bi-check2-square',
     title: 'To-Do List App',
-    desc: 'Gestão de tarefas com armazenamento local.',
+    desc: 'Organizar Tarefas',
     tags: ['HTML', 'CSS', 'JavaScript'],
     links: [{ href: 'https://github.com/xTixa/To-Do-List', label: 'Code', icon: 'bi-github' }, { href: 'https://xtixa.github.io/To-Do-List/', label: 'Demo', icon: 'bi-eye' }],
     cat: 'frontend'
