@@ -69,7 +69,7 @@ function emptyState() {
   return `
     <div class="card">
       <h3>Sem resultados</h3>
-      <p>Tenta outro filtro ou termo de pesquisa.</p>
+      <p>Ainda nao tem nada para apresentar</p>
     </div>
   `;
 }
