@@ -27,7 +27,14 @@ const projects = [
     links: [{ href: 'https://github.com/xTixa/To-Do-List', label: 'Code', icon: 'bi-github' }, { href: 'https://xtixa.github.io/To-Do-List/', label: 'Demo', icon: 'bi-eye' }],
     cat: 'frontend'
   },
-  
+  {
+    icon: 'bi-check2-square',
+    title: 'IMC Calculator App',
+    desc: 'Calcular o IMC (indice de massa corporal)',
+    tags: ['Flutter', 'Dart'],
+    links: [{ href: 'https://github.com/xTixa/IMC-Calculator', label: 'Code', icon: 'bi-github' }, { href: 'https://xtixa.github.io/IMC-Calculator/', label: 'Demo', icon: 'bi-eye' }],
+    cat: 'frontend'
+  },
 ];
 
 // ======= Render dinâmico =======
