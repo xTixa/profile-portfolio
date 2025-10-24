@@ -28,11 +28,19 @@ const projects = [
     cat: 'frontend'
   },
   {
-    icon: 'bi-check2-square',
+    icon: 'bi-heart-pulse',
     title: 'IMC Calculator App',
     desc: 'Calcular o IMC (indice de massa corporal)',
     tags: ['Flutter', 'Dart'],
     links: [{ href: 'https://github.com/xTixa/IMC-Calculator', label: 'Code', icon: 'bi-github' }, { href: 'https://xtixa.github.io/IMC-Calculator/', label: 'Demo', icon: 'bi-eye' }],
+    cat: 'mobile'
+  },
+  {
+    icon: 'bi-alarm',
+    title: 'Pomodoro Timer App',
+    desc: 'Gestao do tempo de trabalho/estudo e pausas',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    links: [{ href: 'https://github.com/xTixa/pomodoro', label: 'Code', icon: 'bi-github' }, { href: 'https://xtixa.github.io/pomodoro/', label: 'Demo', icon: 'bi-eye' }],
     cat: 'frontend'
   },
 ];
