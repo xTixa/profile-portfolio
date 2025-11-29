@@ -24,7 +24,10 @@ const projects = [
     title: 'To-Do List App',
     desc: 'Organizar Tarefas',
     tags: ['HTML', 'CSS', 'JavaScript'],
-    links: [{ href: 'https://github.com/xTixa/To-Do-List', label: 'Code', icon: 'bi-github' }, { href: 'https://xtixa.github.io/To-Do-List/', label: 'Demo', icon: 'bi-eye' }],
+    links: [
+      { href: 'https://github.com/xTixa/To-Do-List', label: 'Code', icon: 'bi-github' },
+      { href: 'https://xtixa.github.io/To-Do-List/', label: 'Demo', icon: 'bi-eye' }
+    ],
     cat: 'frontend'
   },
   {
@@ -32,9 +35,23 @@ const projects = [
     title: 'Pomodoro Timer App',
     desc: 'Gestao do tempo de trabalho/estudo e pausas',
     tags: ['HTML', 'CSS', 'JavaScript'],
-    links: [{ href: 'https://github.com/xTixa/pomodoro', label: 'Code', icon: 'bi-github' }, { href: 'https://xtixa.github.io/pomodoro/', label: 'Demo', icon: 'bi-eye' }],
+    links: [
+      { href: 'https://github.com/xTixa/pomodoro', label: 'Code', icon: 'bi-github' },
+      { href: 'https://xtixa.github.io/pomodoro/', label: 'Demo', icon: 'bi-eye' }
+    ],
     cat: 'frontend'
   },
+  {
+    icon: 'bi-tv',
+    title: 'Clone Netflix',
+    desc: 'Clone da interface da Netflix com API de filmes',
+    tags: ['React', 'Vite', 'Tailwind', 'JavaScript'],
+    links: [
+      { href: 'https://github.com/xTixa/clone-netflix', label: 'Code', icon: 'bi-github' },
+      { href: 'https://xtixa.github.io/clone-netflix/', label: 'Demo', icon: 'bi-eye' }
+    ],
+    cat: 'frontend'
+  }
 ];
 
 // ======= Render dinâmico =======
