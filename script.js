@@ -1,9 +1,7 @@
 // ======= Tema =======
+// O tema inicial já foi definido por um script inline no <head> (evita flash).
 const themeBtn = document.querySelector(".theme-toggle");
-const saved = localStorage.getItem("theme");
-const defaultTheme = saved || "dark";
-document.documentElement.setAttribute("data-theme", defaultTheme);
-updateThemeIcon(defaultTheme);
+updateThemeIcon(document.documentElement.getAttribute("data-theme"));
 themeBtn.addEventListener("click", () => {
   const cur = document.documentElement.getAttribute("data-theme");
   const next = cur === "light" ? "dark" : "light";
@@ -84,6 +82,7 @@ const projects = [
       },
     ],
     cat: "frontend",
+    thumb: "img/pomodoro.png",
   },
   {
     icon: "bi-tv",
@@ -103,6 +102,7 @@ const projects = [
       },
     ],
     cat: "frontend",
+    thumb: "img/clonenetflix.png",
   },
 ];
 
@@ -111,6 +111,7 @@ const grid = document.getElementById("project-grid");
 const resultsCount = document.getElementById("resultsCount");
 const filterBtns = document.querySelectorAll(".filter-btn");
 const searchInput = document.getElementById("search");
+const clearSearchBtn = document.getElementById("clearSearch");
 let state = { filter: "all", q: "" };
 
 function render() {
@@ -175,6 +176,15 @@ filterBtns.forEach((btn) => {
 
 searchInput.addEventListener("input", (e) => {
   state.q = e.target.value;
+  clearSearchBtn.hidden = state.q.length === 0;
+  render();
+});
+
+clearSearchBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  state.q = "";
+  clearSearchBtn.hidden = true;
+  searchInput.focus();
   render();
 });
 

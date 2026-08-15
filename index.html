@@ -14,6 +14,31 @@
       content="Portfolio de Patrícia Oliveira, estudante de Engenharia Informática — projetos frontend, backend, fullstack e mobile."
     />
 
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Patrícia Oliveira — Portfolio" />
+    <meta
+      property="og:description"
+      content="Estudante de Engenharia Informática. Projetos, stack e contacto."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Patrícia Oliveira — Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Estudante de Engenharia Informática. Projetos, stack e contacto."
+    />
+
+    <script>
+      (function () {
+        var saved = localStorage.getItem("theme");
+        var theme =
+          saved ||
+          (window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,6 +55,8 @@
     <script defer src="script.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#home">Saltar para o conteúdo</a>
+
     <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-inner">
@@ -169,6 +196,15 @@
               placeholder="Procurar por nome, stack, descrição..."
               aria-label="Procurar projetos"
             />
+            <button
+              type="button"
+              id="clearSearch"
+              class="clear-search"
+              aria-label="Limpar pesquisa"
+              hidden
+            >
+              <i class="bi bi-x-circle-fill"></i>
+            </button>
           </div>
         </div>
 
@@ -189,7 +225,7 @@
         <div class="contact-actions">
           <a
             class="contact-btn primary"
-            href="patriciaisabeloliveira@outlook.pt"
+            href="mailto:patriciaisabeloliveira@outlook.pt"
           >
             <i class="bi bi-envelope"></i> patriciaisabeloliveira@outlook.pt
           </a>
