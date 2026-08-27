@@ -571,6 +571,19 @@ h1 {
   font-weight: 900;
 }
 
+.project-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
 .project-body {
   flex: 1;
   display: flex;

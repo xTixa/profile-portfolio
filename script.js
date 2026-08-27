@@ -84,6 +84,26 @@ const projects = [
     cat: "frontend",
     thumb: "img/clonenetflix.png",
   },
+  {
+    icon: "bi-wallet2",
+    title: "WalletWise",
+    desc: "Plataforma de gestão financeira pessoal com dashboards, orçamentos, objetivos de poupança e despesas recorrentes.",
+    tags: ["React", "Vite", "Tailwind", "Node.js", "Express", "PostgreSQL", "Prisma"],
+    links: [
+      {
+        href: "https://github.com/xTixa/wallet-wise",
+        label: "Código",
+        icon: "bi-github",
+      },
+      {
+        href: "https://wallet-wise-topaz.vercel.app/",
+        label: "Demo",
+        icon: "bi-box-arrow-up-right",
+      },
+    ],
+    cat: "fullstack",
+    status: "Em Desenvolvimento",
+  },
 ];
 
 let state = {
@@ -132,11 +152,15 @@ function createProjectCard(project) {
   const media = project.thumb
     ? `<img src="${project.thumb}" alt="Captura do projeto ${project.title}" loading="lazy" />`
     : `<div class="project-placeholder"><i class="bi ${project.icon}"></i></div>`;
+  const statusBadge = project.status
+    ? `<span class="project-status">${project.status}</span>`
+    : "";
 
   return `
     <article class="project-card reveal">
       <div class="project-media">
         ${media}
+        ${statusBadge}
         <span class="project-kind">${categoryLabels[project.cat] || project.cat}</span>
       </div>
       <div class="project-body">
