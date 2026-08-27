@@ -2,252 +2,134 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
-    <title>Patrícia Oliveira — Portfolio</title>
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0b0f'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-size='60' text-anchor='middle' fill='%238c68d6' font-weight='700'%3EP%3C/text%3E%3C/svg%3E"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Portfolio de Patrícia Oliveira, estudante de Engenharia Informática — projetos frontend, backend, fullstack e mobile."
-    />
-
+    <title>Patrícia Oliveira | Portfolio</title>
+    <meta name="description" content="Portfolio de Patrícia Oliveira, estudante de Engenharia Informática no IPV. Projetos, percurso, tecnologias e contacto." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Patrícia Oliveira — Portfolio" />
-    <meta
-      property="og:description"
-      content="Estudante de Engenharia Informática. Projetos, stack e contacto."
-    />
+    <meta property="og:title" content="Patrícia Oliveira | Portfolio" />
+    <meta property="og:description" content="Projetos de uma estudante de Engenharia Informática: frontend, fullstack, mobile e aprendizagem continua." />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Patrícia Oliveira — Portfolio" />
-    <meta
-      name="twitter:description"
-      content="Estudante de Engenharia Informática. Projetos, stack e contacto."
-    />
-
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23fff7e8'/%3E%3Cpath d='M24 69V25h22c12 0 20 7 20 18s-8 18-20 18H37v8H24Zm13-20h8c5 0 8-2 8-6s-3-6-8-6h-8v12Z' fill='%231f2933'/%3E%3Ccircle cx='71' cy='70' r='8' fill='%23e0563f'/%3E%3C/svg%3E" />
     <script>
       (function () {
         var saved = localStorage.getItem("theme");
-        var theme =
-          saved ||
-          (window.matchMedia("(prefers-color-scheme: light)").matches
-            ? "light"
-            : "dark");
+        var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
-
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,750&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
-    <a class="skip-link" href="#home">Saltar para o conteúdo</a>
+    <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-inner">
-        <a class="brand" href="#home">
-          <i class="bi bi-terminal"></i> Patrícia<span
-            class="cursor"
-            aria-hidden="true"
-            >_</span
-          >
-        </a>
-
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          aria-controls="navLinks"
-        >
-          <i class="bi bi-list"></i>
-        </button>
-
-        <ul class="nav-links" id="navLinks">
-          <li>
-            <a href="#home"><i class="bi bi-house-fill"></i> Home</a>
-          </li>
-          <li>
-            <a href="#about"><i class="bi bi-person-fill"></i> Sobre</a>
-          </li>
-          <li>
-            <a href="#projects"><i class="bi bi-folder-fill"></i> Projetos</a>
-          </li>
-          <li>
-            <a href="#contact"><i class="bi bi-envelope-fill"></i> Contacto</a>
-          </li>
-        </ul>
-
-        <button class="theme-toggle" aria-label="Mudar tema">
-          <i class="bi bi-moon"></i>
-        </button>
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="#home" aria-label="Patrícia Oliveira">
+        <span class="brand-mark">P</span>
+        <span>Patrícia Oliveira</span>
+      </a>
+      <button class="icon-button menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="nav-panel" id="navLinks">
+        <a href="#home">Início</a>
+        <a href="#percurso">Percurso</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contacto">Contacto</a>
       </div>
+      <button class="icon-button theme-toggle" type="button" aria-label="Mudar tema">
+        <i class="bi bi-moon-stars"></i>
+      </button>
     </nav>
 
-    <!-- Home -->
-    <section id="home" class="section">
-      <div class="hero">
-        <p class="prompt">
-          <span class="prompt-user">patricia</span
-          ><span class="prompt-sym">@</span
-          ><span class="prompt-host">portfolio</span
-          ><span class="prompt-sym">:</span><span class="prompt-path">~</span
-          ><span class="prompt-sym">$</span>
-          <span class="prompt-cmd">whoami</span>
-        </p>
-        <h1>
-          Olá, sou a Patrícia<span class="cursor" aria-hidden="true">_</span>
-        </h1>
-        <p class="subtitle">
-          <i class="bi bi-laptop"></i> Estudante de Engenharia Informática
-        </p>
-        <div class="scroll">
-          <i class="bi bi-chevron-double-down"></i>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="about">
-        <p class="eyebrow"><i class="bi bi-folder2-open"></i> ~/sobre</p>
-        <h2><i class="bi bi-person-badge"></i> Sobre mim</h2>
-
-        <div class="about-grid">
-          <p>
-            <i class="bi bi-geo-alt"></i> Olá! Sou a Patrícia Oliveira, 24 anos,
-            de Viseu, Portugal. <br /><br />
-            <i class="bi bi-mortarboard"></i> Comecei no curso Técnico de Gestão
-            e Programação de Sistemas Informáticos. <br /><br />
-            <i class="bi bi-award"></i> Concluí o CTeSP em Redes e Sistemas
-            Informáticos no IPV em 2023. <br /><br />
-            <i class="bi bi-book"></i> Desde 2023/24, estou na Licenciatura em
-            Engenharia Informática no IPV.
-          </p>
-
-          <div class="skills-row">
-            <ul class="list" data-title="Frontend">
-              <li><i class="bi bi-filetype-html"></i> HTML/CSS</li>
-              <li><i class="bi bi-filetype-js"></i> JavaScript</li>
-              <li><i class="bi bi-braces"></i> React</li>
-            </ul>
-
-            <ul class="list" data-title="Backend &amp; Infra">
-              <li><i class="bi bi-filetype-js"></i> Node.js / Express</li>
-              <li><i class="bi bi-database"></i> PostgreSQL</li>
-              <li><i class="bi bi-hdd-network"></i> MySQL</li>
-            </ul>
-
-            <ul class="list" data-title="A aprender">
-              <li><i class="bi bi-phone"></i> Flutter</li>
-              <li><i class="bi bi-filetype-py"></i> Python</li>
-              <li><i class="bi bi-cup"></i> Java</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <div class="projects">
-        <p class="eyebrow"><i class="bi bi-folder2-open"></i> ~/projetos</p>
-        <h2><i class="bi bi-stack"></i> Projetos</h2>
-
-        <div class="controls">
-          <div
-            class="filters"
-            role="group"
-            aria-label="Filtrar projetos por categoria"
-          >
-            <button class="btn filter-btn active" data-filter="all">
-              Todos
-            </button>
-            <button class="btn filter-btn" data-filter="frontend">
-              Frontend
-            </button>
-            <button class="btn filter-btn" data-filter="backend">
-              Backend
-            </button>
-            <button class="btn filter-btn" data-filter="fullstack">
-              Fullstack
-            </button>
-            <button class="btn filter-btn" data-filter="mobile">Mobile</button>
-          </div>
-          <div class="search">
-            <i class="bi bi-search"></i>
-            <input
-              type="text"
-              id="search"
-              placeholder="Procurar por nome, stack, descrição..."
-              aria-label="Procurar projetos"
-            />
-            <button
-              type="button"
-              id="clearSearch"
-              class="clear-search"
-              aria-label="Limpar pesquisa"
-              hidden
-            >
-              <i class="bi bi-x-circle-fill"></i>
-            </button>
+    <main id="conteudo">
+      <section id="home" class="hero section">
+        <div class="hero-copy">
+          <p class="kicker">Estudante de Engenharia Informática no IPV</p>
+          <h1>Estou a construir o meu caminho em software, projeto a projeto.</h1>
+          <p class="hero-text">Gosto de transformar ideias em interfaces claras, experimentar no frontend e perceber como tudo encaixa no backend. Este portfolio mostra trabalho real, aprendizagem e curiosidade técnica.</p>
+          <div class="hero-actions" aria-label="Ações principais">
+            <a class="button primary" href="#projetos"><i class="bi bi-grid-3x3-gap"></i>Ver projetos</a>
+            <a class="button" href="cv-patricia-oliveira.pdf" download><i class="bi bi-download"></i>CV</a>
           </div>
         </div>
 
+        <div class="workspace" aria-label="Resumo visual do portfolio">
+          <div class="workspace-header">
+            <span>caderno de bordo</span>
+            <span>2026</span>
+          </div>
+          <div class="workspace-grid">
+            <button class="note active" type="button" data-note="frontend"><span>01</span><strong>Interfaces</strong><small>HTML, CSS, React</small></button>
+            <button class="note" type="button" data-note="backend"><span>02</span><strong>Lógica</strong><small>Node, BD, APIs</small></button>
+            <button class="note" type="button" data-note="mobile"><span>03</span><strong>Mobile</strong><small>Flutter em progresso</small></button>
+          </div>
+          <div class="workspace-status" id="workspaceStatus" aria-live="polite">A afinar detalhes visuais e interações para criar experiências mais simples de usar.</div>
+        </div>
+      </section>
+
+      <section id="percurso" class="section path-section">
+        <div class="section-heading">
+          <p class="kicker">Percurso</p>
+          <h2>Uma base técnica em crescimento</h2>
+        </div>
+        <div class="path-layout">
+          <div class="bio-panel">
+            <p>Sou a Patrícia Oliveira, tenho 24 anos e sou de Viseu. Comecei no curso Técnico de Gestão e Programação de Sistemas Informaticos, conclui o CTeSP em Redes e Sistemas Informaticos no IPV em 2023 e continuo a estudar Engenharia Informática.</p>
+            <p>Neste momento procuro consolidar fundamentos, escrever código mais organizado e ganhar ritmo em projetos completos.</p>
+          </div>
+          <ol class="timeline">
+            <li><span>Antes</span><strong>Técnico GPSI</strong><p>Primeiro contacto estruturado com programacao e sistemas.</p></li>
+            <li><span>2023</span><strong>CTeSP em Redes e Sistemas Informaticos</strong><p>Base em redes, bases de dados, infraestrutura e web.</p></li>
+            <li><span>Agora</span><strong>Licenciatura em Engenharia Informática</strong><p>Mais foco em produto, qualidade, interfaces e arquitetura.</p></li>
+          </ol>
+        </div>
+        <div class="toolbox" aria-label="Tecnologias">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>MySQL</span><span>Flutter</span><span>Python</span><span>Java</span>
+        </div>
+      </section>
+
+      <section id="projetos" class="section projects-section">
+        <div class="section-heading">
+          <p class="kicker">Projetos</p>
+          <h2>Pequenos produtos, muitas decisões</h2>
+        </div>
+        <div class="project-controls">
+          <div class="filters" role="group" aria-label="Filtrar projetos">
+            <button class="filter-btn active" type="button" data-filter="all">Todos</button>
+            <button class="filter-btn" type="button" data-filter="frontend">Frontend</button>
+            <button class="filter-btn" type="button" data-filter="backend">Backend</button>
+            <button class="filter-btn" type="button" data-filter="fullstack">Fullstack</button>
+            <button class="filter-btn" type="button" data-filter="mobile">Mobile</button>
+          </div>
+          <label class="search"><i class="bi bi-search"></i><input id="search" type="search" placeholder="Pesquisar projeto ou tecnologia" autocomplete="off" /></label>
+        </div>
         <p class="results-count" id="resultsCount" aria-live="polite"></p>
+        <div id="projectGrid" class="project-grid"></div>
+      </section>
 
-        <div id="project-grid" class="grid"><!-- javascript --></div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact-section">
-      <div class="contact">
-        <p class="eyebrow"><i class="bi bi-folder2-open"></i> ~/contacto</p>
-        <h2><i class="bi bi-envelope-paper"></i> Vamos falar</h2>
-        <p class="contact-sub">
-          // aberta a estágios, projetos e oportunidades
-        </p>
-
-        <div class="contact-actions">
-          <a
-            class="contact-btn primary"
-            href="mailto:patriciaisabeloliveira@outlook.pt"
-          >
-            <i class="bi bi-envelope"></i> patriciaisabeloliveira@outlook.pt
-          </a>
-          <a class="contact-btn" href="cv-patricia-oliveira.pdf" download>
-            <i class="bi bi-file-earmark-arrow-down"></i> Download CV
-          </a>
+      <section id="contacto" class="section contact-section">
+        <div class="contact-wrap">
+          <div>
+            <p class="kicker">Contacto</p>
+            <h2>Aberta a estágios, colaborações e novos desafios.</h2>
+          </div>
+          <div class="contact-actions">
+            <a class="button primary" href="mailto:patriciaisabeloliveira@outlook.pt"><i class="bi bi-envelope"></i>Email</a>
+            <a class="button" href="https://github.com/xTixa" target="_blank" rel="noreferrer"><i class="bi bi-github"></i>GitHub</a>
+            <a class="button" href="https://www.linkedin.com/in/patricia-oliveiira-" target="_blank" rel="noreferrer"><i class="bi bi-linkedin"></i>LinkedIn</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="footer">
-      <div class="footer-links">
-        <a href="https://github.com/xTixa"
-          ><i class="bi bi-github"></i> GitHub</a
-        >
-        <a href="https://www.linkedin.com/in/patricia-oliveiira-"
-          ><i class="bi bi-linkedin"></i> LinkedIn</a
-        >
-      </div>
-      <time datetime="2025-10-18"
-        ><i class="bi bi-calendar"></i> Published on 18-10-2025</time
-      >
+      <span>Patrícia Oliveira</span>
+      <span>Portfolio em evolução continua</span>
     </footer>
   </body>
 </html>

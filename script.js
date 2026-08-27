@@ -1,84 +1,64 @@
-// ======= Tema =======
-// O tema inicial já foi definido por um script inline no <head> (evita flash).
 const themeBtn = document.querySelector(".theme-toggle");
-updateThemeIcon(document.documentElement.getAttribute("data-theme"));
-themeBtn.addEventListener("click", () => {
-  const cur = document.documentElement.getAttribute("data-theme");
-  const next = cur === "light" ? "dark" : "light";
-  document.documentElement.setAttribute("data-theme", next);
-  localStorage.setItem("theme", next);
-  updateThemeIcon(next);
-});
-function updateThemeIcon(theme) {
-  themeBtn.innerHTML =
-    theme === "light"
-      ? '<i class="bi bi-moon"></i>'
-      : '<i class="bi bi-sun"></i>';
-}
-
-// ======= Menu mobile =======
 const menuToggle = document.getElementById("menuToggle");
-const navLinksEl = document.getElementById("navLinks");
-menuToggle.addEventListener("click", () => {
-  const isOpen = navLinksEl.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.innerHTML = isOpen
-    ? '<i class="bi bi-x-lg"></i>'
-    : '<i class="bi bi-list"></i>';
-});
-navLinksEl.querySelectorAll("a").forEach((a) => {
-  a.addEventListener("click", () => {
-    navLinksEl.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.innerHTML = '<i class="bi bi-list"></i>';
-  });
-});
+const navPanel = document.getElementById("navLinks");
+const projectGrid = document.getElementById("projectGrid");
+const resultsCount = document.getElementById("resultsCount");
+const searchInput = document.getElementById("search");
+const filterButtons = [...document.querySelectorAll(".filter-btn")];
+const noteButtons = [...document.querySelectorAll(".note")];
+const workspaceStatus = document.getElementById("workspaceStatus");
 
-// ======= Projetos =======
-const CAT_LABELS = {
+const noteCopy = {
+  frontend:
+    "A afinar detalhes visuais e interações para criar experiências mais simples de usar.",
+  backend:
+    "A ligar interfaces a dados, validações e regras para que os projetos deixem de ser só ecrã.",
+  mobile:
+    "A explorar Flutter com foco em layouts limpos, estados claros e navegação previsivel.",
+};
+
+const categoryLabels = {
   frontend: "Frontend",
   backend: "Backend",
   fullstack: "Fullstack",
   mobile: "Mobile",
 };
 
-// Para adicionar uma captura de ecrã a um projeto, acrescenta thumb: 'caminho/imagem.png'
-// (ex: 'assets/todo-list.png'). Sem thumb, mostra-se um placeholder com o ícone.
 const projects = [
   {
     icon: "bi-check2-square",
     title: "To-Do List App",
-    desc: "Organizar Tarefas",
+    desc: "Aplicação simples para organizar tarefas, com foco em interacao direta e estado no browser.",
     tags: ["HTML", "CSS", "JavaScript"],
     links: [
       {
         href: "https://github.com/xTixa/To-Do-List",
-        label: "Code",
+        label: "Código",
         icon: "bi-github",
       },
       {
         href: "https://xtixa.github.io/To-Do-List/",
         label: "Demo",
-        icon: "bi-eye",
+        icon: "bi-box-arrow-up-right",
       },
     ],
     cat: "frontend",
   },
   {
-    icon: "bi-alarm",
-    title: "Pomodoro Timer App",
-    desc: "Gestao do tempo de trabalho/estudo e pausas",
+    icon: "bi-stopwatch",
+    title: "Pomodoro Timer",
+    desc: "Temporizador para estudo e pausas, criado para praticar componentes visuais e controlo de tempo.",
     tags: ["HTML", "CSS", "JavaScript"],
     links: [
       {
         href: "https://github.com/xTixa/pomodoro",
-        label: "Code",
+        label: "Código",
         icon: "bi-github",
       },
       {
         href: "https://xtixa.github.io/pomodoro/",
         label: "Demo",
-        icon: "bi-eye",
+        icon: "bi-box-arrow-up-right",
       },
     ],
     cat: "frontend",
@@ -87,18 +67,18 @@ const projects = [
   {
     icon: "bi-tv",
     title: "Clone Netflix",
-    desc: "Clone da interface da Netflix com API de filmes",
+    desc: "Recriação de uma interface de streaming com React, Vite e consumo de dados de filmes.",
     tags: ["React", "Vite", "Tailwind", "JavaScript"],
     links: [
       {
         href: "https://github.com/xTixa/clone-netflix",
-        label: "Code",
+        label: "Código",
         icon: "bi-github",
       },
       {
         href: "https://xtixa.github.io/clone-netflix/",
         label: "Demo",
-        icon: "bi-eye",
+        icon: "bi-box-arrow-up-right",
       },
     ],
     cat: "frontend",
@@ -106,104 +86,160 @@ const projects = [
   },
 ];
 
-// ======= Render dinâmico =======
-const grid = document.getElementById("project-grid");
-const resultsCount = document.getElementById("resultsCount");
-const filterBtns = document.querySelectorAll(".filter-btn");
-const searchInput = document.getElementById("search");
-const clearSearchBtn = document.getElementById("clearSearch");
-let state = { filter: "all", q: "" };
+let state = {
+  filter: "all",
+  query: "",
+};
 
-function render() {
-  const q = state.q.trim().toLowerCase();
-  const list = projects.filter((p) => {
-    const byCat = state.filter === "all" || p.cat === state.filter;
-    const hay = [p.title, p.desc, ...(p.tags || [])].join(" ").toLowerCase();
-    const bySearch = !q || hay.includes(q);
-    return byCat && bySearch;
-  });
-  grid.innerHTML = list.map(card).join("") || emptyState();
-  resultsCount.textContent = `// a mostrar ${list.length} de ${projects.length} projeto${projects.length === 1 ? "" : "s"}`;
+function setThemeIcon(theme) {
+  themeBtn.innerHTML =
+    theme === "dark"
+      ? '<i class="bi bi-brightness-high"></i>'
+      : '<i class="bi bi-moon-stars"></i>';
 }
 
-function card(p) {
-  const tags = (p.tags || [])
-    .map((t) => `<span class="tag">${t}</span>`)
+function renderProjects() {
+  const query = state.query.trim().toLowerCase();
+  const filtered = projects.filter((project) => {
+    const categoryMatch = state.filter === "all" || project.cat === state.filter;
+    const searchable = [project.title, project.desc, ...project.tags]
+      .join(" ")
+      .toLowerCase();
+    return categoryMatch && (!query || searchable.includes(query));
+  });
+
+  projectGrid.innerHTML = filtered.length
+    ? filtered.map(createProjectCard).join("")
+    : '<div class="empty-state">Não encontrei projetos com esses filtros.</div>';
+
+  resultsCount.textContent = `${filtered.length} de ${projects.length} projetos visíveis`;
+}
+
+function createProjectCard(project) {
+  const tags = project.tags
+    .map((tag) => `<span class="tag">${tag}</span>`)
     .join("");
-  const links = (p.links || [])
+  const links = project.links
     .map(
-      (l) =>
-        `<a class="link" href="${l.href}"><i class="bi ${l.icon}"></i> ${l.label}</a>`,
+      (link) => `
+        <a href="${link.href}" target="_blank" rel="noreferrer">
+          <i class="bi ${link.icon}"></i>
+          ${link.label}
+        </a>
+      `,
     )
     .join("");
-  const catLabel = CAT_LABELS[p.cat] || p.cat;
-  const thumbSrc = p.thumb;
-  const thumb = thumbSrc
-    ? `<img class="thumb" src="${thumbSrc}" alt="Captura de ecrã de ${p.title}" loading="lazy" />`
-    : `<div class="thumb thumb-placeholder"><i class="bi ${p.icon}"></i></div>`;
+  const media = project.thumb
+    ? `<img src="${project.thumb}" alt="Captura do projeto ${project.title}" loading="lazy" />`
+    : `<div class="project-placeholder"><i class="bi ${project.icon}"></i></div>`;
+
   return `
-    <article class="card" style="--cat-color: var(--cat-${p.cat})">
-      ${thumb}
-      <div class="card-top">
-        <div class="icon"><i class="bi ${p.icon}"></i></div>
-        <span class="cat-label">${catLabel}</span>
+    <article class="project-card reveal">
+      <div class="project-media">
+        ${media}
+        <span class="project-kind">${categoryLabels[project.cat] || project.cat}</span>
       </div>
-      <h3>${p.title}</h3>
-      <p>${p.desc}</p>
-      <div class="tags">${tags}</div>
-      <div class="actions">${links}</div>
+      <div class="project-body">
+        <h3>${project.title}</h3>
+        <p>${project.desc}</p>
+        <div class="tags">${tags}</div>
+        <div class="project-actions">${links}</div>
+      </div>
     </article>
   `;
 }
 
-function emptyState() {
-  return `
-    <div class="card">
-      <h3>Sem resultados</h3>
-      <p>Tenta outro termo de pesquisa ou filtro.</p>
-    </div>
-  `;
-}
+themeBtn.addEventListener("click", () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+  setThemeIcon(next);
+});
 
-filterBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    filterBtns.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    state.filter = btn.dataset.filter;
-    render();
+menuToggle.addEventListener("click", () => {
+  const isOpen = navPanel.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.innerHTML = isOpen
+    ? '<i class="bi bi-x-lg"></i>'
+    : '<i class="bi bi-list"></i>';
+});
+
+navPanel.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navPanel.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.innerHTML = '<i class="bi bi-list"></i>';
   });
 });
 
-searchInput.addEventListener("input", (e) => {
-  state.q = e.target.value;
-  clearSearchBtn.hidden = state.q.length === 0;
-  render();
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    state.filter = button.dataset.filter;
+    renderProjects();
+    observeReveals();
+  });
 });
 
-clearSearchBtn.addEventListener("click", () => {
-  searchInput.value = "";
-  state.q = "";
-  clearSearchBtn.hidden = true;
-  searchInput.focus();
-  render();
+searchInput.addEventListener("input", (event) => {
+  state.query = event.target.value;
+  renderProjects();
+  observeReveals();
 });
 
-const sections = [...document.querySelectorAll(".section")];
-const navLinks = [...document.querySelectorAll(".nav-links a")];
-const obs = new IntersectionObserver(
+noteButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    noteButtons.forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    workspaceStatus.textContent = noteCopy[button.dataset.note];
+  });
+});
+
+const navObserver = new IntersectionObserver(
   (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        const id = "#" + e.target.id;
-        navLinks.forEach((a) =>
-          a.classList.toggle("active", a.getAttribute("href") === id),
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const current = `#${entry.target.id}`;
+      navPanel
+        .querySelectorAll("a")
+        .forEach((link) =>
+          link.classList.toggle("active", link.getAttribute("href") === current),
         );
-      }
     });
   },
-  { threshold: 0.6 },
+  { threshold: 0.48 },
 );
-sections.forEach((s) => obs.observe(s));
 
-// Inicia
-render();
+document.querySelectorAll(".section[id]").forEach((section) => {
+  navObserver.observe(section);
+});
+
+let revealObserver;
+
+function observeReveals() {
+  if (revealObserver) {
+    revealObserver.disconnect();
+  }
+
+  revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.18 },
+  );
+
+  document.querySelectorAll(".reveal").forEach((item) => {
+    revealObserver.observe(item);
+  });
+}
+
+setThemeIcon(document.documentElement.getAttribute("data-theme"));
+renderProjects();
+observeReveals();
