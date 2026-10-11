@@ -113,6 +113,24 @@ const projects = [
     thumb: "img/wallet.png",
     status: "Em Desenvolvimento",
   },
+  {
+    icon: "bi-mortarboard",
+    title: "SoftSkills",
+    desc: "Plataforma de cursos online com frontend em Angular e API REST em Node.js e Express, integrada com MongoDB Atlas.",
+    tags: ["Angular", "Angular Material", "Node.js", "Express", "MongoDB Atlas"],
+    links: [],
+    cat: "fullstack",
+    status: "Em Desenvolvimento",
+  },
+  {
+    icon: "bi-bicycle",
+    title: "Food Delivery",
+    desc: "Plataforma de entrega de comida com aplicações web e mobile, desenvolvida com React, Node.js e React Native.",
+    tags: ["React", "React Native", "Node.js", "Express", "MongoDB"],
+    links: [],
+    cat: "mobile",
+    status: "Em Desenvolvimento",
+  },
 ];
 
 let state = {
