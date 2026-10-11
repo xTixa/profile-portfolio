@@ -88,7 +88,15 @@ const projects = [
     icon: "bi-wallet2",
     title: "WalletWise",
     desc: "Plataforma de gestão financeira pessoal com dashboards, orçamentos, objetivos de poupança e despesas recorrentes.",
-    tags: ["React", "Vite", "Tailwind", "Node.js", "Express", "PostgreSQL", "Prisma"],
+    tags: [
+      "React",
+      "Vite",
+      "Tailwind",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+    ],
     links: [
       {
         href: "https://github.com/xTixa/wallet-wise",
@@ -102,6 +110,7 @@ const projects = [
       },
     ],
     cat: "fullstack",
+    thumb: "img/wallet.png",
     status: "Em Desenvolvimento",
   },
 ];
@@ -121,7 +130,8 @@ function setThemeIcon(theme) {
 function renderProjects() {
   const query = state.query.trim().toLowerCase();
   const filtered = projects.filter((project) => {
-    const categoryMatch = state.filter === "all" || project.cat === state.filter;
+    const categoryMatch =
+      state.filter === "all" || project.cat === state.filter;
     const searchable = [project.title, project.desc, ...project.tags]
       .join(" ")
       .toLowerCase();
@@ -229,7 +239,10 @@ const navObserver = new IntersectionObserver(
       navPanel
         .querySelectorAll("a")
         .forEach((link) =>
-          link.classList.toggle("active", link.getAttribute("href") === current),
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === current,
+          ),
         );
     });
   },
