@@ -44,6 +44,7 @@ const projects = [
       },
     ],
     cat: "frontend",
+    thumb: "img/todo.jpg",
   },
   {
     icon: "bi-stopwatch",
@@ -63,7 +64,7 @@ const projects = [
       },
     ],
     cat: "frontend",
-    thumb: "img/pomodoro.png",
+    thumb: "img/pomodoro.jpg",
   },
   {
     icon: "bi-tv",
@@ -83,7 +84,7 @@ const projects = [
       },
     ],
     cat: "frontend",
-    thumb: "img/clonenetflix.png",
+    thumb: "img/clone.jpg",
   },
   {
     icon: "bi-wallet2",
@@ -111,7 +112,7 @@ const projects = [
       },
     ],
     cat: "fullstack",
-    thumb: "img/wallet.png",
+    thumb: "img/wallet.jpg",
     status: "Em Desenvolvimento",
   },
   {
@@ -128,22 +129,16 @@ const projects = [
     links: [],
     cat: "fullstack",
     status: "Em Desenvolvimento",
+    thumb: "img/softskills.jpg",
   },
   {
     icon: "bi-book",
     title: "BookLog",
     desc: "Plataforma para acompanhar leituras, avaliações e descobertas de livros, com uma aplicação web fullstack e uma experiência mobile.",
-    tags: [
-      "TypeScript",
-      "Prisma",
-      "React Native",
-      "Fullstack",
-      "Mobile",
-    ],
+    tags: ["TypeScript", "Prisma", "React Native", "Fullstack", "Mobile"],
     links: [],
     cat: "fullstack-mobile",
-    thumb: "img/9269766.png",
-    thumbFit: "contain",
+    thumb: "img/booklog.jpg",
     status: "Em Desenvolvimento",
   },
   {
