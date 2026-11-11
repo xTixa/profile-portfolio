@@ -548,6 +548,11 @@ h1 {
   object-fit: cover;
 }
 
+.project-media img.project-thumb-contain {
+  object-fit: contain;
+  padding: 24px;
+}
+
 .project-placeholder {
   height: 100%;
   display: grid;

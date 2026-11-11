@@ -21,6 +21,7 @@ const categoryLabels = {
   frontend: "Frontend",
   backend: "Backend",
   fullstack: "Fullstack",
+  "fullstack-mobile": "Fullstack + Mobile",
   mobile: "Mobile",
 };
 
@@ -129,12 +130,29 @@ const projects = [
     status: "Em Desenvolvimento",
   },
   {
+    icon: "bi-book",
+    title: "BookLog",
+    desc: "Plataforma para acompanhar leituras, avaliações e descobertas de livros, com uma aplicação web fullstack e uma experiência mobile.",
+    tags: [
+      "TypeScript",
+      "Prisma",
+      "React Native",
+      "Fullstack",
+      "Mobile",
+    ],
+    links: [],
+    cat: "fullstack-mobile",
+    thumb: "img/9269766.png",
+    thumbFit: "contain",
+    status: "Em Desenvolvimento",
+  },
+  {
     icon: "bi-bicycle",
     title: "FoodFlow",
     desc: "Plataforma de entrega de comida com aplicações web e mobile, desenvolvida com React, Node.js e React Native.",
     tags: ["React", "React Native", "Node.js", "Express", "MongoDB"],
     links: [],
-    cat: "mobile",
+    cat: "fullstack-mobile",
     thumb: "img/FoodFlow.jpg",
     status: "Em Desenvolvimento",
   },
@@ -185,7 +203,7 @@ function createProjectCard(project) {
     )
     .join("");
   const media = project.thumb
-    ? `<img src="${project.thumb}" alt="Captura do projeto ${project.title}" loading="lazy" />`
+    ? `<img class="${project.thumbFit ? `project-thumb-${project.thumbFit}` : ""}" src="${project.thumb}" alt="Imagem do projeto ${project.title}" loading="lazy" />`
     : `<div class="project-placeholder"><i class="bi ${project.icon}"></i></div>`;
   const statusBadge = project.status
     ? `<span class="project-status">${project.status}</span>`
